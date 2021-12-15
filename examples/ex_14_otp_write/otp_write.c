@@ -12,8 +12,8 @@
  */
 
 #include <stdio.h>
-#include <deca_device_api.h>
-#include <port.h>
+#include <decadriver/deca_device_api.h>
+#include <platform/port.h>
 #include <example_selection.h>
 
 

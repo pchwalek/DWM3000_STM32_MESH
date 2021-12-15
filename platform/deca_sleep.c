@@ -11,8 +11,8 @@
  * @author DecaWave
  */
 
-#include <deca_device_api.h>
-#include <port.h>
+#include <decadriver/deca_device_api.h>
+#include <platform/port.h>
 
 /* Wrapper function to be used by decadriver. Declared in deca_device_api.h */
 void deca_sleep(unsigned int time_ms)

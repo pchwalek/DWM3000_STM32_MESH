@@ -11,7 +11,7 @@
  * @author DecaWave
  */
 
-#include <deca_spi.h>
+#include <platform/deca_spi.h>
 #include <deca_device_api.h>
 #include <port.h>
 #include <stm32wbxx_hal_def.h>
@@ -68,13 +68,13 @@ int writetospiwithcrc(
     stat = decamutexon() ;
     while (HAL_SPI_GetState(&hspi1) != HAL_SPI_STATE_READY);
 
-    HAL_GPIO_WritePin(DW_NSS_GPIO_Port, DW_NSS_Pin, GPIO_PIN_RESET); /**< Put chip select line low */
+    HAL_GPIO_WritePin(UWB_CS_GPIO_Port, UWB_CS_Pin, GPIO_PIN_RESET); /**< Put chip select line low */
 
     HAL_SPI_Transmit(&hspi1, (uint8_t *)headerBuffer, headerLength, 10);    /* Send header in polling mode */
     HAL_SPI_Transmit(&hspi1, (uint8_t *)bodyBuffer, bodyLength, 10);        /* Send data in polling mode */
     HAL_SPI_Transmit(&hspi1, (uint8_t *)&crc8, 1, 10);      /* Send data in polling mode */
 
-    HAL_GPIO_WritePin(DW_NSS_GPIO_Port, DW_NSS_Pin, GPIO_PIN_SET); /**< Put chip select line high */
+    HAL_GPIO_WritePin(UWB_CS_GPIO_Port, UWB_CS_Pin, GPIO_PIN_SET); /**< Put chip select line high */
     decamutexoff(stat);
     return 0;
 } // end writetospiwithcrc()
@@ -97,14 +97,14 @@ int writetospi(uint16_t       headerLength,
 
     while (HAL_SPI_GetState(&hspi1) != HAL_SPI_STATE_READY);
 
-    HAL_GPIO_WritePin(DW_NSS_GPIO_Port, DW_NSS_Pin, GPIO_PIN_RESET); /**< Put chip select line low */
+    HAL_GPIO_WritePin(UWB_CS_GPIO_Port, UWB_CS_Pin, GPIO_PIN_RESET); /**< Put chip select line low */
 
     HAL_SPI_Transmit(&hspi1, (uint8_t *)headerBuffer, headerLength, HAL_MAX_DELAY); /* Send header in polling mode */
 
     if(bodyLength != 0)
         HAL_SPI_Transmit(&hspi1, (uint8_t *)bodyBuffer,   bodyLength, HAL_MAX_DELAY);     /* Send data in polling mode */
 
-    HAL_GPIO_WritePin(DW_NSS_GPIO_Port, DW_NSS_Pin, GPIO_PIN_SET); /**< Put chip select line high */
+    HAL_GPIO_WritePin(UWB_CS_GPIO_Port, UWB_CS_Pin, GPIO_PIN_SET); /**< Put chip select line high */
     decamutexoff(stat);
     return 0;
 } // end writetospi()
@@ -127,9 +127,9 @@ uint16_t spi_cs_low_delay(uint16_t delay_ms)
 	while (HAL_SPI_GetState(&hspi1) != HAL_SPI_STATE_READY);
 	/* Process Locked */
 	__HAL_LOCK(&hspi1);
-	HAL_GPIO_WritePin(DW_NSS_GPIO_Port, DW_NSS_Pin, GPIO_PIN_RESET); /**< Put chip select line low */
+	HAL_GPIO_WritePin(UWB_CS_GPIO_Port, UWB_CS_Pin, GPIO_PIN_RESET); /**< Put chip select line low */
 	Sleep(delay_ms);
-	HAL_GPIO_WritePin(DW_NSS_GPIO_Port, DW_NSS_Pin, GPIO_PIN_SET); /**< Put chip select line high */
+	HAL_GPIO_WritePin(UWB_CS_GPIO_Port, UWB_CS_Pin, GPIO_PIN_SET); /**< Put chip select line high */
 	/* Process Unlocked */
 	__HAL_UNLOCK(&hspi1);
 
@@ -158,7 +158,7 @@ int readfromspi(uint16_t  headerLength,
     /* Blocking: Check whether previous transfer has been finished */
     while (HAL_SPI_GetState(&hspi1) != HAL_SPI_STATE_READY);
 
-    HAL_GPIO_WritePin(DW_NSS_GPIO_Port, DW_NSS_Pin, GPIO_PIN_RESET); /**< Put chip select line low */
+    HAL_GPIO_WritePin(UWB_CS_GPIO_Port, UWB_CS_Pin, GPIO_PIN_RESET); /**< Put chip select line low */
 
     /* Send header */
     for(i=0; i<headerLength; i++)
@@ -189,7 +189,7 @@ int readfromspi(uint16_t  headerLength,
 
     HAL_SPI_Receive(&hspi1, readBuffer, readlength, HAL_MAX_DELAY);
 
-    HAL_GPIO_WritePin(DW_NSS_GPIO_Port, DW_NSS_Pin, GPIO_PIN_SET); /**< Put chip select line high */
+    HAL_GPIO_WritePin(UWB_CS_GPIO_Port, UWB_CS_Pin, GPIO_PIN_SET); /**< Put chip select line high */
 
     decamutexoff(stat);
 

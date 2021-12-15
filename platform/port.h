@@ -99,13 +99,19 @@ typedef enum
  *******************************************************************************/
 
 
-#define DECAIRQ_EXTI_IRQn       (EXTI15_10_IRQn)
+#define DECAIRQ_EXTI_IRQn       (EXTI1_IRQn)
 
-#define DW_RSTn                     DW_RESET_Pin
-#define DW_RSTn_GPIO                DW_RESET_GPIO_Port
+#define DW_RSTn                     UWB_RST_Pin
+#define DW_RSTn_GPIO                UWB_RST_GPIO_Port
 
-#define DECAIRQ                     DW_IRQn_Pin
-#define DECAIRQ_GPIO                DW_IRQn_GPIO_Port
+#define DECAIRQ                     UWB_INT_Pin
+#define DECAIRQ_GPIO                UWB_INT_GPIO_Port
+
+#define DW_RESET_GPIO_Port	    UWB_RST_GPIO_Port
+#define DW_RESET_Pin		    UWB_RST_Pin
+
+#define DW_WAKEUP_GPIO_Port	    UWB_WKP_GPIO_Port
+#define DW_WAKEUP_Pin		    UWB_WKP_Pin
 
 #define TA_BOOT1                    GPIO_PIN_2
 #define TA_BOOT1_GPIO               GPIOB

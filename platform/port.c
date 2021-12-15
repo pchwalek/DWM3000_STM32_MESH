@@ -11,9 +11,9 @@
  * @author DecaWave
  */
 
-#include <port.h>
+#include <platform/port.h>
 //#include <stm32f1xx_hal_conf.h>
-#include <usbd_cdc_if.h>
+#include "App/usbd_cdc_if.h"
 #include <main.h>
 
 /****************************************************************************//**
@@ -427,11 +427,11 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 //            break;
 //        }
 //
-    case DW_RESET_Pin :
+    case UWB_RST_Pin :
         signalResetDone = 1;
         break;
 
-    case DW_IRQn_Pin :
+    case UWB_INT_Pin :
         {
             //while (HAL_GPIO_ReadPin(DECAIRQ_GPIO, DW_IRQn_Pin) == GPIO_PIN_SET)
             {
@@ -497,7 +497,7 @@ __INLINE uint32_t port_GetEXT_IRQStatus(void)
  * */
 __INLINE uint32_t port_CheckEXT_IRQ(void)
 {
-    return HAL_GPIO_ReadPin(DECAIRQ_GPIO, DW_IRQn_Pin);
+    return HAL_GPIO_ReadPin(UWB_INT_GPIO_Port, UWB_INT_Pin);
 }
 
 

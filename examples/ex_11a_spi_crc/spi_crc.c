@@ -13,7 +13,7 @@
  * @author Decawave
  */
 
-#include <deca_device_api.h>
+#include <decadriver/deca_device_api.h>
 #include <deca_regs.h>
 #include <deca_spi.h>
 #include <port.h>

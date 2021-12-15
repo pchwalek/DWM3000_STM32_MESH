@@ -10,7 +10,7 @@
  *
  */
 
-#include <deca_types.h>
+#include <decadriver/deca_types.h>
 #include <deca_regs.h>
 #include <deca_device_api.h>
 #include <shared_defines.h>

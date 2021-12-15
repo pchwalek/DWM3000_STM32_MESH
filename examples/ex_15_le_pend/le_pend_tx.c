@@ -7,7 +7,7 @@
  *           2. The address of the device sending the MAC command frame matches
  *           one of the four 16-bit addresses programmed into LE_PEND01 or
  *           LE_PEND23 registers and the data pending bits are set in FF_CFG
- *           register: LE0_PEND – LE3_PEND.
+ *           register: LE0_PEND ï¿½ LE3_PEND.
  *           3.The address of the device sending the MAC command is 16-bits and SSADRAPE bit is set.
  *           4.The address of the device sending the MAC command is 64-bits and LSADRAPE bit is set.
  *           5.Security bit is not set in Frame Control and frame version is 0 or 1
@@ -22,7 +22,7 @@
  * @author Decawave
  */
 
-#include <deca_device_api.h>
+#include <decadriver/deca_device_api.h>
 #include <deca_regs.h>
 #include <deca_spi.h>
 #include <port.h>
@@ -190,7 +190,7 @@ int le_pend_tx(void)
  *    while loop, and then timing from the "GO" for a few minutes before breaking in again, and examining the frame counters.
  * 2. Source and destination addresses are hard coded constants to keep the example simple but for a real product every device should have a unique ID.
  *    For development purposes it is possible to generate a DW IC unique ID by combining the Lot ID & Part Number values programmed into the DW IC
- *    during its manufacture. However there is no guarantee this will not conflict with someone else’s implementation. We recommended that customers
+ *    during its manufacture. However there is no guarantee this will not conflict with someone elseï¿½s implementation. We recommended that customers
  *    buy a block of addresses from the IEEE Registration Authority for their production items. See "EUI" in the DW IC User Manual.
  * 3. In this example, receive buffer is set to the exact size of the only frame we want to handle but 802.15.4z UWB standard maximum frame length is
  *    127 bytes. DW IC also supports an extended frame length (up to 1023 bytes long) mode which is not used in this example..
