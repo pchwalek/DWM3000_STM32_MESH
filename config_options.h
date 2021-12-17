@@ -55,7 +55,7 @@
  * shortest turn-around time for messages.
  */
 //#define CPU_COMP 400
-#define CPU_COMP 900
+#define CPU_COMP 1500
 
 /*
  * SPI Rate Configuration Settings

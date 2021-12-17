@@ -105,7 +105,7 @@ int tx_with_cca(void)
     test_run_info((unsigned char *)APP_NAME);
 
     /* Configure SPI rate, DW3000 supports up to 38 MHz */
-    port_set_dw_ic_spi_fastrate();
+//    port_set_dw_ic_spi_fastrate();
 
     /* Reset DW IC */
     reset_DWIC(); /* Target specific drive of RSTn line into DW IC low for a period. */
@@ -208,7 +208,7 @@ int tx_with_cca(void)
  *    to restart it if they wish to continue observing this pseudo CCA experiencing an environment of high air-utilisation).
  * 2. The device ID is a hard coded constant in the blink to keep the example simple but for a real product every device should have a unique ID.
  *    For development purposes it is possible to generate a DW3000 unique ID by combining the Lot ID & Part Number values programmed into the
- *    DW3000 during its manufacture. However there is no guarantee this will not conflict with someone else’s implementation. We recommended that
+ *    DW3000 during its manufacture. However there is no guarantee this will not conflict with someone elseï¿½s implementation. We recommended that
  *    customers buy a block of addresses from the IEEE Registration Authority for their production items. See "EUI" in the DW3000 User Manual.
  * 3. In a real application, for optimum performance within regulatory limits, it may be necessary to set TX pulse bandwidth and TX power, (using
  *    the dwt_configuretxrf API call) to per device calibrated values saved in the target system or the DW3000 OTP memory.

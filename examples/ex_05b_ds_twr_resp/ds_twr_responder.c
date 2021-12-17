@@ -83,13 +83,13 @@ static uint32_t status_reg = 0;
 /* Delay between frames, in UWB microseconds. See NOTE 4 below. */
 /* This is the delay from Frame RX timestamp to TX reply timestamp used for calculating/setting the DW IC's delayed TX function. This includes the
  * frame length of approximately 190 us with above configuration. */
-#define POLL_RX_TO_RESP_TX_DLY_UUS 900
+#define POLL_RX_TO_RESP_TX_DLY_UUS 2800
 /* This is the delay from the end of the frame transmission to the enable of the receiver, as programmed for the DW IC's wait for response feature. */
-#define RESP_TX_TO_FINAL_RX_DLY_UUS 500
+#define RESP_TX_TO_FINAL_RX_DLY_UUS 1000
 /* Receive final timeout. See NOTE 5 below. */
-#define FINAL_RX_TIMEOUT_UUS 220
+#define FINAL_RX_TIMEOUT_UUS 1900
 /* Preamble timeout, in multiple of PAC size. See NOTE 6 below. */
-#define PRE_TIMEOUT 5
+#define PRE_TIMEOUT 0
 
 /* Timestamps of frames transmission/reception. */
 static uint64_t poll_rx_ts;
@@ -119,7 +119,7 @@ int ds_twr_responder(void)
     test_run_info((unsigned char *)APP_NAME);
 
     /* Configure SPI rate, DW3000 supports up to 38 MHz */
-    port_set_dw_ic_spi_fastrate();
+//    port_set_dw_ic_spi_fastrate();
 
     /* Reset DW IC */
     reset_DWIC(); /* Target specific drive of RSTn line into DW IC low for a period. */
@@ -269,7 +269,7 @@ int ds_twr_responder(void)
                         distance = tof * SPEED_OF_LIGHT;
 
                         /* Display computed distance on LCD. */
-                        sprintf(dist_str, "DIST: %3.2f m", distance);
+//                        sprintf(dist_str, "DIST: %3.2f m", distance);
                         test_run_info((unsigned char *)dist_str);
 
                         /* as DS-TWR initiator is waiting for RNG_DELAY_MS before next poll transmission

@@ -85,16 +85,16 @@ static uint32_t status_reg = 0;
 
 /* Delay between frames, in UWB microseconds. See NOTE 4 below. */
 /* This is the delay from the end of the frame transmission to the enable of the receiver, as programmed for the DW IC's wait for response feature. */
-#define POLL_TX_TO_RESP_RX_DLY_UUS 700
+#define POLL_TX_TO_RESP_RX_DLY_UUS 500
 //#define POLL_TX_TO_RESP_RX_DLY_UUS 360
 
 /* This is the delay from Frame RX timestamp to TX reply timestamp used for calculating/setting the DW IC's delayed TX function. This includes the
  * frame length of approximately 190 us with above configuration. */
-#define RESP_RX_TO_FINAL_TX_DLY_UUS 700
+#define RESP_RX_TO_FINAL_TX_DLY_UUS 2800
 //#define RESP_RX_TO_FINAL_TX_DLY_UUS 600
 
 /* Receive response timeout. See NOTE 5 below. */
-#define RESP_RX_TIMEOUT_UUS 300
+#define RESP_RX_TIMEOUT_UUS 4300
 //#define RESP_RX_TIMEOUT_UUS 1000
 /* Preamble timeout, in multiple of PAC size. See NOTE 7 below. */
 #define PRE_TIMEOUT 5
@@ -120,10 +120,10 @@ extern dwt_txconfig_t txconfig_options;
 int ds_twr_initiator(void)
 {
     /* Display application name on LCD. */
-    test_run_info((unsigned char *)APP_NAME);
+//    test_run_info((unsigned char *)APP_NAME);
 
     /* Configure SPI rate, DW3000 supports up to 38 MHz */
-    port_set_dw_ic_spi_fastrate();
+//    port_set_dw_ic_spi_fastrate();
 
     /* Reset DW IC */
     reset_DWIC(); /* Target specific drive of RSTn line into DW IC low for a period. */
@@ -135,7 +135,7 @@ int ds_twr_initiator(void)
 
     if (dwt_initialise(DWT_DW_INIT) == DWT_ERROR)
     {
-        test_run_info((unsigned char *)"INIT FAILED     ");
+//        test_run_info((unsigned char *)"INIT FAILED     ");
         while (1)
         { };
     }
@@ -143,7 +143,7 @@ int ds_twr_initiator(void)
     /* Configure DW IC. See NOTE 2 below. */
     if(dwt_configure(&config)) /* if the dwt_configure returns DWT_ERROR either the PLL or RX calibration has failed the host should reset the device */
     {
-        test_run_info((unsigned char *)"CONFIG FAILED     ");
+//        test_run_info((unsigned char *)"CONFIG FAILED     ");
         while (1)
         { };
     }
